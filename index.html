@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>M·DATOS — Soluciones digitales para empresas</title>
+<meta name="description" content="Diseño web, redes, automatización con IA, dashboards e integraciones. Hacemos que tu empresa funcione mejor.">
+<meta name="theme-color" content="#05070E">
+<meta name="color-scheme" content="dark">
+
+<link rel="icon" href="assets/brand/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/icon-32.png">
+<link rel="apple-touch-icon" href="assets/brand/icon-180.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="canonical" href="https://mdatos.com.ar/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="M·DATOS">
+<meta property="og:title" content="M·DATOS — Soluciones digitales para empresas">
+<meta property="og:description" content="Webs, redes, automatización con IA, dashboards e integraciones. Hacemos que tu empresa funcione mejor.">
+<meta property="og:image" content="assets/brand/og.png">
+<meta property="og:locale" content="es_AR">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preload" href="assets/fonts/space-grotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ============ FONDO ANIMADO (3 escenas encadenadas por scroll) ============ -->
+<canvas id="fx" aria-hidden="true"></canvas>
+<div class="fx-veil" aria-hidden="true"></div>
+<div class="fx-grain" aria-hidden="true"></div>
+
+<a class="skip" href="#servicios">Saltar al contenido</a>
+
+<!-- ============ HEADER ============ -->
+<header class="hdr" id="hdr">
+  <div class="wrap hdr__in">
+    <a class="hdr__logo" href="#top" aria-label="M·DATOS, inicio">
+      <img src="assets/brand/logo-lockup-light.png" alt="M·DATOS" width="1382" height="200">
+    </a>
+    <nav class="nav" id="nav" aria-label="Principal">
+      <a href="#servicios">Servicios</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#casos">Casos</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn--sm btn--primary" href="#contacto">Hablemos</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="wrap hero__in">
+    <p class="eyebrow reveal"><span class="dot"></span> Soluciones digitales para empresas</p>
+
+    <h1 class="hero__title reveal" data-delay="1">
+      Hacemos que tu empresa
+      <span class="grad">funcione mejor</span>
+    </h1>
+
+    <p class="hero__sub reveal" data-delay="2">
+      Diseñamos, conectamos y automatizamos tu operación digital: web, redes, datos y sistemas
+      trabajando como una sola pieza. Sin parches. Sin humo.
+    </p>
+
+    <div class="hero__cta reveal" data-delay="3">
+      <a class="btn btn--primary btn--lg" href="#contacto">
+        Diagnóstico gratis
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+      </a>
+      <a class="btn btn--ghost btn--lg" href="#servicios">Ver qué hacemos</a>
+    </div>
+
+    <ul class="hero__pills reveal" data-delay="4">
+      <li>Webs · Redes · Contenido</li>
+      <li>Automatización · IA · Integraciones</li>
+      <li>Dashboards · Paneles · Sistemas</li>
+    </ul>
+  </div>
+
+  <div class="hero__scroll" aria-hidden="true"><span></span>scroll</div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Sitios web</span><i>◆</i><span>Landing pages</span><i>◆</i><span>E-commerce</span><i>◆</i>
+    <span>Automatización</span><i>◆</i><span>Inteligencia artificial</span><i>◆</i><span>Dashboards</span><i>◆</i>
+    <span>CRM</span><i>◆</i><span>Integraciones API</span><i>◆</i><span>Redes sociales</span><i>◆</i>
+    <span>SEO local</span><i>◆</i><span>Identidad visual</span><i>◆</i><span>Soporte</span><i>◆</i>
+  </div>
+</div>
+
+<!-- ============ SERVICIOS ============ -->
+<section class="sec" id="servicios">
+  <div class="wrap">
+    <header class="sec__head reveal">
+      <p class="kicker">01 — Servicios</p>
+      <h2>Todo lo digital de tu empresa,<br><span class="grad">en un solo lugar</span></h2>
+      <p class="sec__lead">No vendemos piezas sueltas. Armamos el sistema completo y lo dejamos andando.</p>
+    </header>
+
+    <div class="grid grid--3">
+
+      <article class="card reveal" data-delay="1">
+        <div class="card__ico">
+          <svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="15" rx="2.5"/><path d="M2.5 8.5h19M6 6.2h.01M8.5 6.2h.01"/></svg>
+        </div>
+        <h3>Diseño y desarrollo web</h3>
+        <p>Sitios institucionales, landings que convierten y tiendas online. Rápidos, medibles y pensados para vender, no para mirar.</p>
+        <ul class="tags"><li>Web corporativa</li><li>Landing</li><li>E-commerce</li></ul>
+      </article>
+
+      <article class="card reveal" data-delay="2">
+        <div class="card__ico">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3.2 9.5h17.6M3.2 14.5h17.6M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18"/></svg>
+        </div>
+        <h3>Redes y contenido</h3>
+        <p>Gestión de perfiles, parrilla de contenido, diseño de piezas y pauta. Una marca que se ve profesional todos los días del mes.</p>
+        <ul class="tags"><li>Community</li><li>Diseño</li><li>Ads</li></ul>
+      </article>
+
+      <article class="card reveal" data-delay="3">
+        <div class="card__ico">
+          <svg viewBox="0 0 24 24"><path d="M13 2 4.5 13.5H11L10 22l9-11.5h-6.5L13 2Z"/></svg>
+        </div>
+        <h3>Automatización e IA</h3>
+        <p>Tareas repetitivas que se hacen solas: presupuestos, seguimientos, respuestas, reportes. Asistentes con IA entrenados con tu información.</p>
+        <ul class="tags"><li>Flujos</li><li>Chatbots</li><li>Agentes IA</li></ul>
+      </article>
+
+      <article class="card reveal" data-delay="1">
+        <div class="card__ico">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M7.5 15.5v-3M12 15.5v-7M16.5 15.5v-5"/></svg>
+        </div>
+        <h3>Dashboards y paneles</h3>
+        <p>Tus números en una pantalla, actualizados solos. Ventas, stock, cobranzas y equipo: dejás de decidir a ojo.</p>
+        <ul class="tags"><li>BI</li><li>KPIs</li><li>Reportes</li></ul>
+      </article>
+
+      <article class="card reveal" data-delay="2">
+        <div class="card__ico">
+          <svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.6"/><circle cx="18" cy="18" r="2.6"/><circle cx="18" cy="6" r="2.6"/><path d="M8.6 6H15.4M6 8.6V15a3 3 0 0 0 3 3h6.4"/></svg>
+        </div>
+        <h3>Sistemas e integraciones</h3>
+        <p>Conectamos lo que ya usás —CRM, facturación, ERP, planillas, WhatsApp— para que dejen de hablar idiomas distintos.</p>
+        <ul class="tags"><li>APIs</li><li>CRM</li><li>Migraciones</li></ul>
+      </article>
+
+      <article class="card reveal" data-delay="3">
+        <div class="card__ico">
+          <svg viewBox="0 0 24 24"><path d="M12 21s7.5-5.2 7.5-11a7.5 7.5 0 0 0-15 0c0 5.8 7.5 11 7.5 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+        </div>
+        <h3>Presencia y SEO local</h3>
+        <p>Que te encuentren cuando te buscan. Google Business, reseñas, posicionamiento y fichas ordenadas en todos lados.</p>
+        <ul class="tags"><li>SEO</li><li>Google Business</li><li>Reputación</li></ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESO ============ -->
+<section class="sec" id="proceso">
+  <div class="wrap">
+    <header class="sec__head reveal">
+      <p class="kicker">02 — Proceso</p>
+      <h2>Cuatro pasos,<br><span class="grad">cero misterio</span></h2>
+      <p class="sec__lead">Sabés siempre en qué etapa estás, qué se entrega y cuándo.</p>
+    </header>
+
+    <ol class="steps">
+      <li class="step reveal" data-delay="1">
+        <span class="step__n">01</span>
+        <h3>Diagnóstico</h3>
+        <p>Miramos cómo trabaja tu empresa hoy: herramientas, tiempos muertos y fugas de plata. Sale un informe con lo que conviene atacar primero.</p>
+        <span class="step__meta">Sin costo · 45 min</span>
+      </li>
+      <li class="step reveal" data-delay="2">
+        <span class="step__n">02</span>
+        <h3>Plan y propuesta</h3>
+        <p>Alcance, plazos y precio cerrado por escrito. Priorizamos por impacto: lo que más mueve la aguja, primero.</p>
+        <span class="step__meta">48 a 72 hs</span>
+      </li>
+      <li class="step reveal" data-delay="3">
+        <span class="step__n">03</span>
+        <h3>Implementación</h3>
+        <p>Construimos por entregas cortas y te mostramos avances reales. Capacitamos a tu equipo para que no dependa de nosotros.</p>
+        <span class="step__meta">2 a 8 semanas</span>
+      </li>
+      <li class="step reveal" data-delay="4">
+        <span class="step__n">04</span>
+        <h3>Mejora continua</h3>
+        <p>Medimos, ajustamos y sumamos lo siguiente. La operación digital no se termina: se mantiene y se afila.</p>
+        <span class="step__meta">Mensual</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ CASOS ============ -->
+<section class="sec" id="casos">
+  <div class="wrap">
+    <header class="sec__head reveal">
+      <p class="kicker">03 — Casos</p>
+      <h2>Trabajo que <span class="grad">se nota en los números</span></h2>
+      <p class="sec__lead">Algunos de los proyectos que llevamos adelante.</p>
+    </header>
+
+    <div class="grid grid--3">
+      <article class="case reveal" data-delay="1">
+        <div class="case__media" data-tone="a"><span class="case__tag">Web + SEO</span></div>
+        <h3>Distribuidora mayorista</h3>
+        <p>Catálogo online con pedidos por WhatsApp y stock sincronizado. Los vendedores dejaron de pasar listas en PDF.</p>
+        <div class="case__kpis"><b>+180%</b><span>consultas web</span><b>−9 h</b><span>por semana</span></div>
+      </article>
+
+      <article class="case reveal" data-delay="2">
+        <div class="case__media" data-tone="b"><span class="case__tag">Automatización</span></div>
+        <h3>Estudio profesional</h3>
+        <p>Turnos, recordatorios y seguimiento post-consulta automáticos, integrados con el CRM y con facturación.</p>
+        <div class="case__kpis"><b>−72%</b><span>ausentismo</span><b>3 min</b><span>por turno</span></div>
+      </article>
+
+      <article class="case reveal" data-delay="3">
+        <div class="case__media" data-tone="c"><span class="case__tag">Dashboard</span></div>
+        <h3>Cadena de locales</h3>
+        <p>Un panel único con ventas por sucursal, margen y cobranzas, actualizado solo todas las mañanas.</p>
+        <div class="case__kpis"><b>1</b><span>pantalla</span><b>Diario</b><span>vs. mensual</span></div>
+      </article>
+    </div>
+
+    <p class="note reveal">Los casos se muestran a modo de referencia del tipo de trabajo. Podemos mostrarte los proyectos en vivo en la reunión.</p>
+  </div>
+</section>
+
+<!-- ============ NOSOTROS ============ -->
+<section class="sec" id="nosotros">
+  <div class="wrap about">
+    <div class="about__txt reveal">
+      <p class="kicker">04 — Nosotros</p>
+      <h2>Somos el área digital<br><span class="grad">que tu empresa no tiene</span></h2>
+      <p>M·DATOS nació de una idea simple: la mayoría de las pymes no necesita más herramientas, necesita que las que ya tiene funcionen juntas y que alguien se haga cargo.</p>
+      <p>Trabajamos como un equipo interno tercerizado. Entendemos el negocio antes de tocar una línea de código, hablamos en castellano y no desaparecemos después de la entrega.</p>
+      <ul class="checks">
+        <li>Un interlocutor único para todo lo digital</li>
+        <li>Precios cerrados, sin sorpresas a mitad de camino</li>
+        <li>Todo queda documentado y a tu nombre</li>
+        <li>Respuesta el mismo día hábil</li>
+      </ul>
+    </div>
+    <div class="about__side reveal" data-delay="2">
+      <img class="about__mark" src="assets/brand/mark.png" alt="" width="900" height="661" loading="lazy">
+      <div class="stats">
+        <div><b data-count="40">0</b><span>proyectos entregados</span></div>
+        <div><b data-count="12">0</b><span>rubros distintos</span></div>
+        <div><b data-count="98" data-suffix="%">0</b><span>clientes que siguen</span></div>
+        <div><b data-count="24" data-suffix="h">0</b><span>tiempo de respuesta</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec" id="faq">
+  <div class="wrap wrap--narrow">
+    <header class="sec__head reveal">
+      <p class="kicker">05 — Preguntas</p>
+      <h2>Lo que <span class="grad">siempre nos preguntan</span></h2>
+    </header>
+
+    <div class="faq reveal">
+      <details>
+        <summary>¿Trabajan con empresas chicas?</summary>
+        <div><p>Sí. La mayoría de nuestros clientes son pymes de entre 2 y 50 personas. Armamos el alcance según el tamaño y el momento de cada empresa: se puede empezar por una sola pieza y crecer desde ahí.</p></div>
+      </details>
+      <details>
+        <summary>¿Cuánto cuesta?</summary>
+        <div><p>Depende del alcance, pero siempre con precio cerrado antes de empezar. Después del diagnóstico te pasamos una propuesta con el detalle de lo que incluye, los plazos y el valor. Sin costos ocultos ni horas extra sorpresa.</p></div>
+      </details>
+      <details>
+        <summary>¿Cuánto tarda un proyecto?</summary>
+        <div><p>Una landing sale en 1 o 2 semanas. Un sitio completo, entre 3 y 5. Las automatizaciones y dashboards dependen de los sistemas a conectar, normalmente entre 2 y 8 semanas. Entregamos por partes, así ves avances desde la primera semana.</p></div>
+      </details>
+      <details>
+        <summary>¿La web queda a mi nombre?</summary>
+        <div><p>Siempre. El dominio, el hosting y todas las cuentas quedan a nombre de tu empresa, con tus accesos. Nada queda atado a nosotros: si algún día querés seguir con otro equipo, te llevás todo documentado.</p></div>
+      </details>
+      <details>
+        <summary>¿Qué pasa después de la entrega?</summary>
+        <div><p>Podés quedarte con el proyecto cerrado o contratar mantenimiento mensual: actualizaciones, soporte, cambios de contenido, monitoreo y mejoras. La mayoría elige el mensual, pero no es obligatorio.</p></div>
+      </details>
+      <details>
+        <summary>¿Atienden fuera de la ciudad?</summary>
+        <div><p>Sí, trabajamos con clientes de todo el país de forma remota. Reuniones por video, avances compartidos online y todo por escrito. Si estás cerca, también nos sentamos en tu oficina.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section class="sec sec--contact" id="contacto">
+  <div class="wrap contact">
+    <div class="contact__txt reveal">
+      <p class="kicker">06 — Contacto</p>
+      <h2>Empecemos por un<br><span class="grad">diagnóstico gratis</span></h2>
+      <p>45 minutos, sin compromiso. Revisamos cómo funciona tu empresa hoy y te decimos, con nombre y apellido, qué conviene mejorar primero. Te vas con el informe, contrates o no.</p>
+
+      <ul class="contact__list">
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 16.8v2.4a2 2 0 0 1-2.2 2A19.6 19.6 0 0 1 3 5.7 2 2 0 0 1 5 3.5h2.4a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1l-1 1a16 16 0 0 0 6 6l1-1a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+          <a data-tel href="#">Cargando…</a>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>
+          <a data-mail href="#">Cargando…</a>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>
+          <span>Lunes a viernes, 9 a 18 h</span>
+        </li>
+      </ul>
+
+      <a class="btn btn--wa btn--lg" data-wa href="#">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Z"/><path d="M8.6 7.6c.3 0 .6 0 .8.5l.9 2c.1.3 0 .6-.2.8l-.6.6a7.6 7.6 0 0 0 3.6 3.6l.6-.7c.2-.2.5-.3.8-.2l2 .9c.4.2.5.5.5.8 0 1.2-1 2-2.1 2a9 9 0 0 1-8.4-8.4c0-1.1.8-2 1.9-2Z"/></svg>
+        Escribinos por WhatsApp
+      </a>
+    </div>
+
+    <form class="form reveal" data-delay="2" id="form" novalidate>
+      <div class="form__row">
+        <label class="field">
+          <span>Nombre y apellido *</span>
+          <input type="text" name="nombre" required autocomplete="name" placeholder="Juan Pérez">
+        </label>
+        <label class="field">
+          <span>Empresa</span>
+          <input type="text" name="empresa" autocomplete="organization" placeholder="Mi Empresa S.A.">
+        </label>
+      </div>
+      <div class="form__row">
+        <label class="field">
+          <span>Email *</span>
+          <input type="email" name="email" required autocomplete="email" placeholder="juan@miempresa.com">
+        </label>
+        <label class="field">
+          <span>Teléfono / WhatsApp</span>
+          <input type="tel" name="telefono" autocomplete="tel" placeholder="11 5555 5555">
+        </label>
+      </div>
+      <label class="field">
+        <span>¿Qué necesitás? *</span>
+        <select name="servicio" required>
+          <option value="">Elegí una opción…</option>
+          <option>Sitio web o landing</option>
+          <option>Tienda online</option>
+          <option>Redes sociales y contenido</option>
+          <option>Automatización e IA</option>
+          <option>Dashboard o panel de control</option>
+          <option>Integrar sistemas que ya uso</option>
+          <option>Mejora digital integral</option>
+          <option>Todavía no sé, necesito asesoramiento</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>Contanos un poco más</span>
+        <textarea name="mensaje" rows="4" placeholder="En qué rubro estás, qué herramientas usás hoy y qué te gustaría resolver."></textarea>
+      </label>
+
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="honey">
+
+      <button class="btn btn--primary btn--lg btn--full" type="submit">
+        <span>Enviar consulta</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+      </button>
+      <p class="form__msg" id="formMsg" role="status" aria-live="polite"></p>
+      <p class="form__legal">Al enviar aceptás que te contactemos por este medio. No compartimos tus datos con nadie.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="ftr">
+  <div class="wrap ftr__in">
+    <div class="ftr__brand">
+      <img src="assets/brand/logo-stacked-light.png" alt="M·DATOS — Soluciones digitales para empresas" width="1200" height="803" loading="lazy">
+      <p>Hacemos que tu empresa funcione mejor.</p>
+    </div>
+    <nav class="ftr__nav" aria-label="Pie de página">
+      <div>
+        <h4>Servicios</h4>
+        <a href="#servicios">Diseño web</a>
+        <a href="#servicios">Redes y contenido</a>
+        <a href="#servicios">Automatización e IA</a>
+        <a href="#servicios">Dashboards</a>
+        <a href="#servicios">Integraciones</a>
+      </div>
+      <div>
+        <h4>Empresa</h4>
+        <a href="#proceso">Proceso</a>
+        <a href="#casos">Casos</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#faq">Preguntas frecuentes</a>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <a data-wa href="#">WhatsApp</a>
+        <a data-mail href="#">Email</a>
+        <a data-tel href="#">Teléfono</a>
+      </div>
+    </nav>
+  </div>
+  <div class="wrap ftr__bot">
+    <p>© <span id="yr">2026</span> M·DATOS. Todos los derechos reservados.</p>
+    <p class="ftr__mono">Soluciones digitales para empresas</p>
+  </div>
+</footer>
+
+<a class="wa-float" data-wa href="#" aria-label="Escribinos por WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Z"/><path d="M8.6 7.6c.3 0 .6 0 .8.5l.9 2c.1.3 0 .6-.2.8l-.6.6a7.6 7.6 0 0 0 3.6 3.6l.6-.7c.2-.2.5-.3.8-.2l2 .9c.4.2.5.5.5.8 0 1.2-1 2-2.1 2a9 9 0 0 1-8.4-8.4c0-1.1.8-2 1.9-2Z"/></svg>
+</a>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/scene.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "M·DATOS",
+  "description": "Soluciones digitales para empresas: diseño web, redes sociales, automatización con IA, dashboards e integración de sistemas.",
+  "slogan": "Hacemos que tu empresa funcione mejor",
+  "url": "https://mdatos.com.ar/",
+  "logo": "https://mdatos.com.ar/assets/brand/icon-512.png",
+  "areaServed": "AR",
+  "availableLanguage": "es",
+  "priceRange": "$$",
+  "openingHours": "Mo-Fr 09:00-18:00"
+}
+</script>
+</body>
+</html>
