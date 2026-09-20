@@ -230,12 +230,21 @@ main,.hdr,.ftr,.wa-float{position:relative;z-index:3}
   border:1px solid var(--line);backdrop-filter:blur(14px);
   transition:transform .5s var(--ease),border-color .4s;
 }
+.step::before{
+  content:"";position:absolute;top:0;left:26px;right:26px;height:2px;border-radius:2px;
+  background:rgba(255,255,255,.1);
+}
+/* se carga siguiendo el scroll: --fill lo escribe main.js (0 → 1) */
 .step::after{
   content:"";position:absolute;top:0;left:26px;right:26px;height:2px;border-radius:2px;
-  background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease);
+  background:var(--grad);transform:scaleX(var(--fill,0));transform-origin:left;
+  transition:transform .18s linear;
+  box-shadow:0 0 12px rgba(0,170,255,calc(var(--fill,0) * .75));
 }
 .step:hover{transform:translateY(-5px);border-color:rgba(0,160,255,.32)}
-.step:hover::after,.step.is-in::after{transform:scaleX(1)}
+.step__n{transition:opacity .5s var(--ease),filter .5s var(--ease)}
+.step:not(.is-live) .step__n{opacity:.32;filter:grayscale(.7)}
+.step.is-live{border-color:rgba(0,160,255,.3)}
 .step__n{font-family:var(--f-mono);font-size:2.6rem;font-weight:500;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:.85}
 .step h3{font-size:1.18rem;margin:.55em 0 .5em}
 .step p{color:var(--ink-2);font-size:.93rem}
@@ -283,12 +292,27 @@ main,.hdr,.ftr,.wa-float{position:relative;z-index:3}
 .about h2{font-size:clamp(2rem,4.2vw,3.2rem);font-weight:700}
 .about__txt p{color:var(--ink-2);margin-top:1.4em;max-width:52ch}
 .checks{margin-top:2.2em;display:grid;gap:14px}
-.checks li{position:relative;padding-left:34px;color:var(--ink-2);font-size:.97rem}
-.checks li::before{
-  content:"";position:absolute;left:0;top:.28em;width:20px;height:20px;border-radius:50%;
-  background:linear-gradient(140deg,rgba(0,212,255,.25),rgba(0,82,204,.25));border:1px solid rgba(0,170,255,.4);
+.checks li{
+  position:relative;padding-left:36px;color:var(--ink-2);font-size:.97rem;
+  opacity:.45;transition:opacity .5s var(--ease),color .5s var(--ease);
 }
-.checks li::after{content:"";position:absolute;left:6.5px;top:.62em;width:7px;height:4px;border-left:1.8px solid var(--cyan);border-bottom:1.8px solid var(--cyan);transform:rotate(-45deg)}
+.checks li.is-checked{opacity:1;color:var(--ink)}
+.check{
+  position:absolute;left:0;top:.12em;width:22px;height:22px;border-radius:50%;
+  display:grid;place-items:center;
+  border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.04);
+  transition:border-color .45s var(--ease),background .45s var(--ease),box-shadow .45s var(--ease),transform .45s var(--ease);
+}
+.check svg{width:13px;height:13px;stroke:var(--cyan);stroke-width:2.6}
+.check svg path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .5s var(--ease) .1s}
+.checks li.is-checked .check{
+  border-color:rgba(0,190,255,.6);
+  background:linear-gradient(140deg,rgba(0,212,255,.3),rgba(0,82,204,.3));
+  box-shadow:0 0 0 4px rgba(0,150,255,.1),0 6px 18px -8px rgba(0,160,255,.8);
+  animation:checkPop .5s var(--ease);
+}
+.checks li.is-checked .check svg path{stroke-dashoffset:0}
+@keyframes checkPop{40%{transform:scale(1.22)}}
 
 .about__side{display:grid;gap:28px;justify-items:center}
 .about__mark{width:min(230px,55%);filter:drop-shadow(0 22px 60px rgba(0,120,255,.4));animation:float 7s ease-in-out infinite}
@@ -398,6 +422,96 @@ main,.hdr,.ftr,.wa-float{position:relative;z-index:3}
 .reveal[data-delay="3"]{transition-delay:.27s}
 .reveal[data-delay="4"]{transition-delay:.36s}
 
+/* =========================================================
+   Texto tecleado del hero
+   ========================================================= */
+.type{position:relative;display:inline-block}
+.type__ghost{visibility:hidden}
+.type__out{position:absolute;left:0;top:0;width:100%;white-space:pre-wrap}
+.type__out::after{
+  content:"";display:inline-block;width:.55em;height:1.05em;margin-left:.12em;
+  vertical-align:-.18em;background:var(--cyan);border-radius:1px;
+  box-shadow:0 0 10px rgba(0,212,255,.8);
+}
+.type.is-typing .type__out::after{animation:none}
+.type__out::after{animation:caret 1s steps(1) infinite}
+.type.is-done .type__out::after{opacity:.55}
+@keyframes caret{50%{opacity:0}}
+
+/* =========================================================
+   Íconos animados de las tarjetas de servicio
+   Solo se animan mientras la tarjeta está a la vista (.is-live)
+   ========================================================= */
+.ai{overflow:visible}
+.ai .d,.ai .n,.ai .b,.ai .heart{fill:currentColor;stroke:none}
+
+/* — web: barras de contenido dibujándose + semáforo — */
+.ai-web .ln{stroke-dasharray:1;stroke-dashoffset:1}
+.card.is-live .ai-web .l1{animation:aiDraw 3.2s var(--ease) infinite}
+.card.is-live .ai-web .l2{animation:aiDraw 3.2s var(--ease) .42s infinite}
+@keyframes aiDraw{0%{stroke-dashoffset:1}32%,72%{stroke-dashoffset:0}100%{stroke-dashoffset:1}}
+.ai-web .d{opacity:.35}
+.card.is-live .ai-web .d1{animation:aiBlink 3.2s steps(1) infinite}
+.card.is-live .ai-web .d2{animation:aiBlink 3.2s steps(1) 1.6s infinite}
+@keyframes aiBlink{0%,45%{opacity:1}46%,100%{opacity:.3}}
+
+/* — redes: corazón que late y contador de likes — */
+.card__ico--likes{position:relative;overflow:visible}
+.ai-like .heart{transform-box:fill-box;transform-origin:50% 60%;fill-opacity:.9}
+.card.is-live .ai-like .heart{animation:aiBeat 2.6s var(--ease) infinite}
+@keyframes aiBeat{0%,72%,100%{transform:scale(1)}78%{transform:scale(1.18)}84%{transform:scale(.97)}90%{transform:scale(1.08)}}
+.ai-like .ping{opacity:0;transform-box:fill-box;transform-origin:50% 50%;stroke:var(--cyan)}
+.card.is-live .ai-like .ping{animation:aiPing 2.6s var(--ease) infinite}
+@keyframes aiPing{0%,70%{opacity:0;transform:scale(.45)}80%{opacity:.5}100%{opacity:0;transform:scale(1.25)}}
+.likes{
+  position:absolute;right:-13px;bottom:-9px;
+  font-family:var(--f-mono);font-size:.68rem;font-weight:500;line-height:1;color:var(--ink);
+  background:rgba(4,8,18,.94);border:1px solid rgba(0,170,255,.42);border-radius:100px;
+  padding:.36em .6em;white-space:nowrap;
+  box-shadow:0 6px 18px -8px rgba(0,140,255,.9);
+  transition:transform .28s var(--ease),border-color .28s;
+}
+.likes.bump{transform:translateY(-3px) scale(1.09);border-color:rgba(0,212,255,.85)}
+
+/* — automatización: el rayo se carga — */
+.ai-bolt .bolt-bg{opacity:.22}
+.ai-bolt .bolt{stroke-dasharray:1;stroke-dashoffset:1}
+.card.is-live .ai-bolt .bolt{animation:aiCharge 2.4s var(--ease) infinite}
+@keyframes aiCharge{
+  0%{stroke-dashoffset:1;filter:none}
+  55%{stroke-dashoffset:0}
+  70%{filter:drop-shadow(0 0 7px rgba(0,212,255,.95))}
+  88%{stroke-dashoffset:0;filter:none}
+  100%{stroke-dashoffset:-1}
+}
+
+/* — dashboards: barras de datos en vivo — */
+.ai-bars .b{transform-box:fill-box;transform-origin:50% 100%}
+.card.is-live .ai-bars .b1{animation:aiBar1 2.8s var(--ease) infinite}
+.card.is-live .ai-bars .b2{animation:aiBar2 2.8s var(--ease) .2s infinite}
+.card.is-live .ai-bars .b3{animation:aiBar3 2.8s var(--ease) .4s infinite}
+@keyframes aiBar1{0%,100%{transform:scaleY(.30)}35%{transform:scaleY(.62)}65%{transform:scaleY(.42)}}
+@keyframes aiBar2{0%,100%{transform:scaleY(.86)}40%{transform:scaleY(.48)}70%{transform:scaleY(1)}}
+@keyframes aiBar3{0%,100%{transform:scaleY(.55)}30%{transform:scaleY(.92)}75%{transform:scaleY(.68)}}
+
+/* — integraciones: los datos viajan entre nodos — */
+.ai-net .wire{stroke-dasharray:3 3}
+.card.is-live .ai-net .wire{animation:aiFlow 1.6s linear infinite}
+@keyframes aiFlow{to{stroke-dashoffset:-6}}
+.ai-net .n{transform-box:fill-box;transform-origin:50% 50%;fill-opacity:.25;stroke:currentColor;stroke-width:1.6}
+.card.is-live .ai-net .n1{animation:aiNode 2.4s var(--ease) infinite}
+.card.is-live .ai-net .n2{animation:aiNode 2.4s var(--ease) .4s infinite}
+.card.is-live .ai-net .n3{animation:aiNode 2.4s var(--ease) .8s infinite}
+@keyframes aiNode{0%,60%,100%{fill-opacity:.2;transform:scale(1)}20%{fill-opacity:.95;transform:scale(1.18)}}
+
+/* — SEO local: chincheta con radar — */
+.ai-pin .pin{transform-box:fill-box;transform-origin:50% 100%}
+.card.is-live .ai-pin .pin{animation:aiDrop 3s var(--ease) infinite}
+@keyframes aiDrop{0%,55%,100%{transform:translateY(0)}62%{transform:translateY(-3.5px)}72%{transform:translateY(0) scaleY(.94)}80%{transform:translateY(0)}}
+.ai-pin .radar{opacity:0;transform-box:fill-box;transform-origin:50% 50%;stroke:var(--cyan)}
+.card.is-live .ai-pin .radar{animation:aiRadar 3s var(--ease) infinite}
+@keyframes aiRadar{0%{opacity:0;transform:scale(.4)}12%{opacity:.6}45%,100%{opacity:0;transform:scale(1.7)}}
+
 /* ---------- Responsive ---------- */
 @media (max-width:980px){
   .about,.contact{grid-template-columns:1fr}
@@ -433,4 +547,10 @@ main,.hdr,.ftr,.wa-float{position:relative;z-index:3}
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
   .reveal{opacity:1;transform:none}
+  .checks li{opacity:1;color:var(--ink)}
+  .checks li .check{border-color:rgba(0,190,255,.6);background:linear-gradient(140deg,rgba(0,212,255,.3),rgba(0,82,204,.3))}
+  .checks li .check svg path{stroke-dashoffset:0}
+  .step::after{transform:scaleX(1)}
+  .step:not(.is-live) .step__n{opacity:1;filter:none}
+  .type__out::after{display:none}
 }

@@ -6,6 +6,8 @@
 
   var CFG = window.MD_CONFIG || {};
   var $  = function (s, c) { return (c || document).querySelector(s); };
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var clamp = function (v, a, b) { return v < a ? a : v > b ? b : v; };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
   /* ---------------------------------------------------
@@ -109,7 +111,6 @@
      7. Contadores de la sección Nosotros
      --------------------------------------------------- */
   var counters = $$('[data-count]');
-  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   function runCounter(el) {
     var end = parseFloat(el.dataset.count) || 0;
     var sfx = el.dataset.suffix || '+';
@@ -150,7 +151,108 @@
   });
 
   /* ---------------------------------------------------
-     10. Formulario
+     10. Hero: el subtítulo se escribe como si lo tipearan
+     --------------------------------------------------- */
+  var typeEl = $('.type');
+  if (typeEl) {
+    var typeOut = $('.type__out', typeEl);
+    var typeTxt = typeEl.getAttribute('data-type') || '';
+    if (reduced) {
+      typeOut.textContent = typeTxt;
+      typeEl.classList.add('is-done');
+    } else {
+      typeEl.classList.add('is-typing');
+      var ti = 0;
+      setTimeout(function tick() {
+        typeOut.textContent = typeTxt.slice(0, ++ti);
+        if (ti < typeTxt.length) {
+          /* ritmo irregular: se siente tecleado y no mecánico */
+          var pausa = typeTxt.charAt(ti - 1) === ' ' ? 90 : 34 + Math.random() * 62;
+          setTimeout(tick, pausa);
+        } else {
+          typeEl.classList.remove('is-typing');
+          typeEl.classList.add('is-done');
+        }
+      }, 600);
+    }
+  }
+
+  /* ---------------------------------------------------
+     11. Íconos de servicios: solo se animan a la vista
+     --------------------------------------------------- */
+  var cards = $$('.card');
+  if ('IntersectionObserver' in window && !reduced) {
+    var live = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { en.target.classList.toggle('is-live', en.isIntersecting); });
+    }, { threshold: 0.2 });
+    cards.forEach(function (c) { live.observe(c); });
+  } else {
+    cards.forEach(function (c) { c.classList.add('is-live'); });
+  }
+
+  /* contador de likes de la tarjeta de redes */
+  var likeEl = $('[data-likes]');
+  if (likeEl && !reduced) {
+    var likes = parseInt(likeEl.textContent.replace(/\D/g, ''), 10) || 1248;
+    var likeCard = likeEl.closest('.card');
+    setInterval(function () {
+      if (document.hidden || !likeCard.classList.contains('is-live')) return;
+      likes += 1 + Math.floor(Math.random() * 4);
+      likeEl.textContent = likes.toLocaleString('es-AR');
+      likeEl.classList.add('bump');
+      setTimeout(function () { likeEl.classList.remove('bump'); }, 320);
+    }, 1500);
+  }
+
+  /* ---------------------------------------------------
+     12. Avance por scroll: barras del proceso y checkpoints
+         Cada lista se completa en orden a medida que se baja.
+     --------------------------------------------------- */
+  function sequence(listSel, itemSel, apply) {
+    var list = $(listSel);
+    if (!list) return null;
+    var items = $$(itemSel, list);
+    if (!items.length) return null;
+    if (reduced) { items.forEach(function (el, i) { apply(el, 1, i); }); return null; }
+    return function () {
+      var r = list.getBoundingClientRect();
+      var vh = innerHeight || 800;
+      var span = r.height + vh * 0.45;
+      var p = clamp((vh * 0.86 - r.top) / span, 0, 1);
+      items.forEach(function (el, i) {
+        apply(el, clamp(p * items.length - i, 0, 1), i);
+      });
+    };
+  }
+
+  var seqs = [
+    sequence('.steps', '.step', function (el, f) {
+      el.style.setProperty('--fill', f.toFixed(3));
+      el.classList.toggle('is-live', f > 0.04);
+    }),
+    sequence('.checks', 'li', function (el, f) {
+      el.classList.toggle('is-checked', f >= 0.5);
+    })
+  ].filter(Boolean);
+
+  if (seqs.length) {
+    var queued = false;
+    var runSeqs = function () {
+      queued = false;
+      for (var i = 0; i < seqs.length; i++) seqs[i]();
+    };
+    var onMove = function () {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(runSeqs);
+    };
+    addEventListener('scroll', onMove, { passive: true });
+    addEventListener('resize', onMove, { passive: true });
+    runSeqs();
+  }
+
+  /* ---------------------------------------------------
+     13. Formulario
      --------------------------------------------------- */
   var form = $('#form'), msg = $('#formMsg');
   if (form) {

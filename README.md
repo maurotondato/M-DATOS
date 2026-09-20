@@ -103,7 +103,29 @@ Está hecho en Canvas 2D, sin librerías, adaptado a la densidad de cada pantall
 Si el visitante tiene activado *reducir movimiento* en su sistema, se dibuja un
 solo cuadro fijo y no se anima nada.
 
-## 7. Probarlo en tu máquina
+## 7. Las animaciones de la página
+
+Además del fondo, hay cuatro animaciones propias. Todas se apagan solas si el
+visitante tiene activado *reducir movimiento* en su sistema.
+
+- **Hero**: "Soluciones digitales para empresas" se escribe letra por letra, con
+  cursor y un ritmo irregular para que se sienta tecleado. El recuadro ya reserva
+  su tamaño final, así que nada se mueve mientras escribe. Para cambiar el texto,
+  editá el atributo `data-type` **y** el contenido de `.type__ghost` en `index.html`
+  (los dos tienen que decir lo mismo).
+- **Íconos de servicios**: cada uno tiene su propia animación en bucle —la ventana
+  dibuja sus líneas, el rayo se carga, las barras se mueven como datos en vivo, los
+  nodos se pasan información, la chincheta rebota con un radar— y **redes y contenido
+  lleva un contador de likes que sube solo**. Se animan únicamente mientras la
+  tarjeta está a la vista.
+- **Proceso**: la barra celeste de cada paso se carga siguiendo el scroll, uno
+  después del otro. El número del paso se enciende cuando le toca.
+- **Nosotros**: los cuatro checkpoints se van tildando de a uno a medida que bajás.
+
+Las tres últimas se manejan solas con el orden del HTML: si agregás o sacás una
+tarjeta, un paso o un ítem de la lista, el reparto se recalcula sin tocar nada.
+
+## 8. Probarlo en tu máquina
 
 Alcanza con abrir `index.html` en el navegador. Para que el isotipo se arme con
 partículas hace falta un servidor local (el navegador bloquea la lectura de la
