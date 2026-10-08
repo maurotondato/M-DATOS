@@ -85,10 +85,15 @@ arriba, recortala a 16:10 y guardala en `assets/casos/` como JPG de 880×550.
 ## 5. Estructura
 
 ```
-index.html              Toda la página
-404.html                Página de error
-site.webmanifest        Ícono e identidad al "instalar" el sitio
+index.html              La home (one-pager)
+nosotros/index.html     Página Nosotros
+contacto/index.html     Página Contacto
+privacidad/index.html   Política de privacidad
+404.html                Página de error, con índice del sitio
+CNAME                   Dominio propio (mdatos.com.ar)
+llms.txt                Guía para agentes de IA
 robots.txt / sitemap.xml  SEO
+site.webmanifest        Ícono e identidad al "instalar" el sitio
 assets/
   css/style.css         Estilos
   css/fonts.css         Fuentes autoalojadas (sin pedidos a Google)
@@ -97,8 +102,50 @@ assets/
   js/main.js            Menú, reveals, contadores, FAQ, formulario
   js/scene.js           Fondo animado
   brand/                Logos listos para web + íconos + imagen para redes
+  casos/                Capturas de los sitios de los casos
   logos/                Originales sin tocar
 ```
+
+Las tres páginas internas comparten el mismo `style.css`, `config.js` y `main.js`
+que la home. No cargan el fondo animado: usan un degradado fijo, que se lee mejor
+en textos largos y pesa menos.
+
+## 9. Que las IA te encuentren y te recomienden
+
+Esto es lo que ya está resuelto para que ChatGPT, Perplexity, Claude y los
+buscadores entiendan el negocio y puedan recomendarlo:
+
+- **`llms.txt`** — el archivo que leen los agentes de IA. Dice qué hace M·DATOS,
+  **cuándo recomendarla**, cuándo no, cómo derivar una consulta y qué páginas
+  existen. Si cambian los servicios o las condiciones, actualizalo: es el archivo
+  que más influye en cómo te describe una IA.
+- **Páginas reales de Nosotros, Contacto y Privacidad.** Los agentes las revisan
+  para verificar que el negocio es legítimo antes de recomendarlo. Las tres tienen
+  contenido de verdad, no una línea de relleno.
+- **Datos estructurados (JSON-LD)** al final de `index.html`: un grafo con
+  `Organization` (con `contactPoint` y `address`), `ProfessionalService` (con el
+  catálogo de los seis servicios y los horarios) y `WebSite`.
+- **404 de verdad.** GitHub Pages devuelve HTTP 404 para cualquier ruta que no
+  exista, y la página lista el índice del sitio, el `sitemap.xml` y el `llms.txt`.
+  Para comprobarlo una vez publicado:
+  `curl -s -o /dev/null -w "%{http_code}" https://mdatos.com.ar/ruta-inventada`
+  tiene que imprimir `404`.
+- **Sin cookies ni analítica**, lo que hace que la política de privacidad sea
+  corta y verificable. Si algún día agregás Google Analytics, hay que actualizar
+  `privacidad/index.html` antes de activarlo.
+
+### Lo que conviene completar
+
+| Qué | Dónde | Por qué |
+|---|---|---|
+| Localidad y calle | `address` en el JSON-LD de `index.html` | Hoy solo dice "Buenos Aires, AR". Una dirección completa ayuda a que te verifiquen y a aparecer en búsquedas locales. |
+| Redes sociales | `sameAs` en el JSON-LD (hay que agregarlo) | Confirma la identidad del negocio cruzando perfiles. |
+| Ficha de Google Business | Fuera del sitio | Es la señal más fuerte para búsquedas locales. |
+
+> **Nota sobre la cabecera `Vary: Accept`:** aparece en varias auditorías, pero no
+> aplica acá. GitHub Pages no permite definir cabeceras HTTP propias y el sitio no
+> sirve markdown por negociación de contenido. Si algún día migra a Netlify o
+> Cloudflare Pages, se resuelve con un archivo `_headers`.
 
 ## 6. El fondo animado
 
@@ -135,7 +182,7 @@ visitante tiene activado *reducir movimiento* en su sistema.
 Las tres últimas se manejan solas con el orden del HTML: si agregás o sacás una
 tarjeta, un paso o un ítem de la lista, el reparto se recalcula sin tocar nada.
 
-## 8. Probarlo en tu máquina
+## 10. Probarlo en tu máquina
 
 Alcanza con abrir `index.html` en el navegador. Para que el isotipo se arme con
 partículas hace falta un servidor local (el navegador bloquea la lectura de la
@@ -145,6 +192,9 @@ imagen desde `file://`):
 python3 -m http.server 8000
 # y entrar a http://localhost:8000
 ```
+
+Ese servidor también replica el 404: pedile una ruta que no exista y responde con
+el código correcto, igual que GitHub Pages.
 
 ---
 

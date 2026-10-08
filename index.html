@@ -488,13 +488,15 @@
       </div>
       <div>
         <h4>Empresa</h4>
+        <a href="nosotros/">Nosotros</a>
         <a href="#proceso">Proceso</a>
         <a href="#casos">Casos</a>
-        <a href="#nosotros">Nosotros</a>
         <a href="#faq">Preguntas frecuentes</a>
+        <a href="privacidad/">Privacidad</a>
       </div>
       <div>
         <h4>Contacto</h4>
+        <a href="contacto/">Cómo contactarnos</a>
         <a data-wa href="#">WhatsApp</a>
         <a data-mail href="#">Email</a>
         <a data-tel href="#">Teléfono</a>
@@ -518,18 +520,113 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "M·DATOS",
-  "description": "Soluciones digitales para empresas: diseño web, redes sociales, automatización con IA, dashboards e integración de sistemas.",
-  "slogan": "Hacemos que tu empresa funcione mejor",
-  "url": "https://mdatos.com.ar/",
-  "logo": "https://mdatos.com.ar/assets/brand/icon-512.png",
-  "telephone": "+54-9-2223-431190",
-  "email": "mdatos.ventas@gmail.com",
-  "areaServed": "AR",
-  "availableLanguage": "es",
-  "priceRange": "$$",
-  "openingHours": "Mo-Fr 09:00-18:00"
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://mdatos.com.ar/#organizacion",
+      "name": "M·DATOS",
+      "alternateName": "M DATOS",
+      "url": "https://mdatos.com.ar/",
+      "description": "Estudio argentino de servicios digitales para pymes: diseño web, redes y contenido, automatización con inteligencia artificial, dashboards e integración de sistemas.",
+      "slogan": "Hacemos que tu empresa funcione mejor",
+      "email": "mdatos.ventas@gmail.com",
+      "telephone": "+54-9-2223-431190",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://mdatos.com.ar/assets/brand/icon-512.png",
+        "width": 512,
+        "height": 512
+      },
+      "image": "https://mdatos.com.ar/assets/brand/og.png",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "Buenos Aires",
+        "addressCountry": "AR"
+      },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "name": "Consultas comerciales y diagnóstico sin cargo",
+          "telephone": "+54-9-2223-431190",
+          "email": "mdatos.ventas@gmail.com",
+          "availableLanguage": ["Spanish"],
+          "areaServed": "AR"
+        },
+        {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "name": "Soporte a clientes",
+          "email": "mdatos.ventas@gmail.com",
+          "availableLanguage": ["Spanish"],
+          "areaServed": "AR"
+        }
+      ],
+      "areaServed": { "@type": "Country", "name": "Argentina" },
+      "knowsLanguage": "es-AR"
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://mdatos.com.ar/#servicio",
+      "name": "M·DATOS",
+      "parentOrganization": { "@id": "https://mdatos.com.ar/#organizacion" },
+      "url": "https://mdatos.com.ar/",
+      "priceRange": "$$",
+      "currenciesAccepted": "ARS",
+      "areaServed": { "@type": "Country", "name": "Argentina" },
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "Buenos Aires",
+        "addressCountry": "AR"
+      },
+      "telephone": "+54-9-2223-431190",
+      "email": "mdatos.ventas@gmail.com",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Servicios digitales para empresas",
+        "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": { "@type": "Service", "name": "Diseño y desarrollo web", "description": "Sitios institucionales, landing pages de venta y tiendas online." }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": { "@type": "Service", "name": "Redes sociales y contenido", "description": "Gestión de perfiles, calendario de contenido, diseño de piezas y pauta." }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": { "@type": "Service", "name": "Automatización e inteligencia artificial", "description": "Flujos automatizados, chatbots y asistentes con IA entrenados con información de la empresa." }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": { "@type": "Service", "name": "Dashboards y paneles de control", "description": "Paneles de ventas, stock, cobranzas y equipo, actualizados automáticamente." }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": { "@type": "Service", "name": "Integración de sistemas", "description": "Conexión vía API de CRM, facturación, ERP, planillas y WhatsApp." }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": { "@type": "Service", "name": "Presencia y SEO local", "description": "Posicionamiento local, Google Business y gestión de reseñas." }
+        }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://mdatos.com.ar/#website",
+      "url": "https://mdatos.com.ar/",
+      "name": "M·DATOS",
+      "inLanguage": "es-AR",
+      "publisher": { "@id": "https://mdatos.com.ar/#organizacion" }
+    }
+  ]
 }
 </script>
 </body>

@@ -25,8 +25,7 @@
   });
   $$('[data-mail]').forEach(function (a) {
     a.href = 'mailto:' + mail;
-    if (a.textContent.trim() === 'Cargando…' || a.dataset.mail === 'text') a.textContent = mail;
-    else if (a.textContent.trim() === 'Email') { /* deja la etiqueta del footer */ }
+    if (a.textContent.trim() === 'Cargando…') a.textContent = mail;
   });
   $$('[data-tel]').forEach(function (a) {
     a.href = 'tel:+' + waNum;
@@ -39,30 +38,32 @@
      2. Header: fondo al scrollear
      --------------------------------------------------- */
   var hdr = $('#hdr');
-  function onScroll() {
-    hdr.classList.toggle('is-stuck', scrollY > 24);
+  if (hdr) {
+    var onScroll = function () { hdr.classList.toggle('is-stuck', scrollY > 24); };
+    addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
   }
-  addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
 
   /* ---------------------------------------------------
      3. Menú móvil
      --------------------------------------------------- */
   var burger = $('#burger'), nav = $('#nav');
-  function closeNav() {
-    nav.classList.remove('is-open');
-    burger.setAttribute('aria-expanded', 'false');
-    burger.setAttribute('aria-label', 'Abrir menú');
+  if (burger && nav) {
+    var closeNav = function () {
+      nav.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Abrir menú');
+    };
+    burger.addEventListener('click', function () {
+      var open = nav.classList.toggle('is-open');
+      burger.setAttribute('aria-expanded', String(open));
+      burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    });
+    nav.addEventListener('click', function (e) {
+      if (e.target.closest('a')) closeNav();
+    });
+    addEventListener('keydown', function (e) { if (e.key === 'Escape') closeNav(); });
   }
-  burger.addEventListener('click', function () {
-    var open = nav.classList.toggle('is-open');
-    burger.setAttribute('aria-expanded', String(open));
-    burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
-  });
-  nav.addEventListener('click', function (e) {
-    if (e.target.closest('a')) closeNav();
-  });
-  addEventListener('keydown', function (e) { if (e.key === 'Escape') closeNav(); });
 
   /* ---------------------------------------------------
      4. Reveal al entrar en pantalla

@@ -542,6 +542,52 @@ main,.hdr,.ftr,.wa-float{position:relative;z-index:3}
 .card.is-live .ai-pin .radar{animation:aiRadar 3s var(--ease) infinite}
 @keyframes aiRadar{0%{opacity:0;transform:scale(.4)}12%{opacity:.6}45%,100%{opacity:0;transform:scale(1.7)}}
 
+/* =========================================================
+   Páginas internas (nosotros, contacto, privacidad, 404)
+   Sin canvas: fondo estático, pensado para leer texto largo
+   ========================================================= */
+body.doc-page{
+  background:
+    radial-gradient(120% 60% at 50% -10%,rgba(0,123,255,.16),transparent 62%),
+    linear-gradient(180deg,#070B14 0%,var(--bg) 55%);
+  background-attachment:fixed;
+}
+.page{padding:130px 0 clamp(60px,8vw,110px)}
+.page__head{max-width:52ch;margin-bottom:clamp(36px,5vw,58px)}
+.page__head h1{font-size:clamp(2.2rem,5.2vw,3.6rem);font-weight:700}
+.page__head p{margin-top:1.2em;color:var(--ink-2);font-size:1.06rem}
+.crumb{
+  display:inline-flex;align-items:center;gap:.5em;margin-bottom:1.6em;
+  font-family:var(--f-mono);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+  transition:color .25s;
+}
+.crumb svg{width:.9em;height:.9em;stroke-width:2.4;transition:transform .3s var(--ease)}
+.crumb:hover{color:var(--cyan)}
+.crumb:hover svg{transform:translateX(-3px)}
+
+.doc{max-width:74ch}
+.doc h2{font-size:clamp(1.3rem,2.4vw,1.75rem);margin:2.4em 0 .7em;font-weight:600}
+.doc h2:first-child{margin-top:0}
+.doc h3{font-size:1.08rem;margin:1.8em 0 .5em;color:var(--ink)}
+.doc p{color:var(--ink-2);margin-bottom:1.1em}
+.doc ul{margin:0 0 1.4em;display:grid;gap:.6em}
+.doc ul li{position:relative;padding-left:22px;color:var(--ink-2)}
+.doc ul li::before{content:"";position:absolute;left:4px;top:.68em;width:5px;height:5px;border-radius:50%;background:var(--blue)}
+.doc a:not(.btn){color:var(--cyan);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(0,212,255,.35);transition:text-decoration-color .25s}
+.doc a:not(.btn):hover{text-decoration-color:var(--cyan)}
+.doc strong{color:var(--ink);font-weight:600}
+.doc hr{border:0;border-top:1px solid var(--line);margin:2.6em 0}
+.doc__meta{font-family:var(--f-mono);font-size:.78rem;color:var(--muted);letter-spacing:.04em}
+.doc__box{
+  margin:1.8em 0;padding:22px 24px;border-radius:var(--r);
+  border:1px solid var(--line);background:rgba(255,255,255,.035);backdrop-filter:blur(12px);
+}
+.doc__box p:last-child{margin-bottom:0}
+.doc__cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:2.6em}
+
+/* lista de datos de contacto reutilizable */
+.doc .contact__list{margin:1.6em 0 0}
+
 /* ---------- Responsive ---------- */
 @media (max-width:980px){
   .about,.contact{grid-template-columns:1fr}

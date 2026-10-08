@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
+# Guía para agentes y asistentes de IA:
+# https://mdatos.com.ar/llms.txt
+
 Sitemap: https://mdatos.com.ar/sitemap.xml
