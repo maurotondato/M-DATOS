@@ -14,13 +14,16 @@ botón flotante, el formulario, la sección de contacto y el pie de página.
 
 ```js
 window.MD_CONFIG = {
-  whatsapp:        '5491155555555',              // sin +, sin espacios, sin guiones
-  telefonoVisible: '+54 9 11 5555-5555',         // cómo se muestra en pantalla
+  whatsapp:        '5492223431190',              // sin +, sin espacios, sin guiones
+  telefonoVisible: '+54 9 2223 43-1190',         // cómo se muestra en pantalla
   whatsappMsg:     '¡Hola M·DATOS! ...',         // mensaje que aparece ya escrito
-  email:           'hola@mdatos.com.ar',
-  formEndpoint:    'mailto'                       // ver punto 3
+  email:           'mdatos.ventas@gmail.com',
+  formEndpoint:    'https://formsubmit.co/ajax/mdatos.ventas@gmail.com'
 };
 ```
+
+> Si cambiás el teléfono o el mail, actualizá también el bloque `application/ld+json`
+> del final de `index.html` (`telephone` y `email`): eso es lo que lee Google.
 
 > El número de WhatsApp en Argentina va **54 + 9 + código de área sin el 0 +
 > número sin el 15**. Ej.: (011) 15-5555-5555 → `5491155555555`.
@@ -42,19 +45,23 @@ Con dominio propio (`mdatos.com.ar`):
 
 El archivo `.nojekyll` ya está: evita que GitHub procese el sitio con Jekyll.
 
-## 3. Que el formulario te llegue al mail
+## 3. Activar el formulario — ⚠️ un paso obligatorio
 
-Por defecto (`formEndpoint: 'mailto'`) el formulario abre el cliente de correo del
-visitante con la consulta ya escrita. Funciona siempre y no requiere configurar nada,
-pero depende de que la persona tenga un mail configurado.
+El formulario ya está apuntado a **mdatos.ventas@gmail.com** vía FormSubmit, pero
+**FormSubmit no manda nada hasta que confirmes la casilla una vez**:
 
-Para recibirlos directo en tu casilla, sin backend, usá **FormSubmit** (gratis):
+1. Publicá el sitio.
+2. Entrá y mandá una consulta de prueba desde el formulario.
+3. Te llega un mail de FormSubmit a mdatos.ventas@gmail.com: **hacé clic en el
+   enlace de activación**.
+4. Mandá otra prueba y fijate que te llegue. Recién ahí quedó andando.
 
-1. Poné en `config.js`: `formEndpoint: 'https://formsubmit.co/ajax/TU-EMAIL@dominio.com'`
-2. Enviá el formulario una vez desde el sitio publicado.
-3. Te llega un mail de FormSubmit: confirmá y listo.
+Hasta que hagas ese paso, al visitante le dice "¡Listo!" pero la consulta no llega.
+Mientras tanto el botón de WhatsApp funciona desde el minuto cero.
 
-Alternativa: **Formspree** → `'https://formspree.io/f/TU-ID'`.
+Si preferís no depender de un tercero, poné `formEndpoint: 'mailto'` en `config.js`:
+el formulario abre el cliente de correo del visitante con la consulta ya escrita.
+Alternativa a FormSubmit: **Formspree** → `'https://formspree.io/f/TU-ID'`.
 
 ## 4. Cambiar textos, casos y logos
 
@@ -67,10 +74,13 @@ Alternativa: **Formspree** → `'https://formspree.io/f/TU-ID'`.
 | Logos procesados | `assets/brand/` |
 | Logos originales del Drive | `assets/logos/` |
 
-Los **casos** están cargados como referencia del tipo de trabajo. Cuando tengas
-proyectos reales, reemplazá título, texto y las dos métricas de cada tarjeta. Para
-poner una imagen en vez del fondo geométrico, cambiá el `div.case__media` por un
-`<img>` con la captura del proyecto.
+Los **casos** son los tres proyectos reales, con capturas de cada sitio en
+`assets/casos/`. Para sumar uno nuevo, copiá un bloque `<article class="case">` y
+cambiá: la imagen, el `alt`, la etiqueta (`case__tag`), el nombre, el rubro
+(`case__kind`), el texto, los dos datos (`case__facts`) y las dos URLs.
+
+Para regenerar una captura: abrí el sitio a 1360×850, sacá una foto de la parte de
+arriba, recortala a 16:10 y guardala en `assets/casos/` como JPG de 880×550.
 
 ## 5. Estructura
 
