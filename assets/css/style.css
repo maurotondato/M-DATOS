@@ -456,7 +456,9 @@ main,.hdr,.ftr,.wa-float{position:relative;z-index:3}
    Texto tecleado del hero
    ========================================================= */
 .type{position:relative;display:inline-block}
-.type__ghost{visibility:hidden}
+/* el fantasma reserva tambien el ancho del cursor, para que al terminar
+   de escribir no se caiga a una segunda linea */
+.type__ghost{visibility:hidden;padding-right:.72em}
 .type__out{position:absolute;left:0;top:0;width:100%;white-space:pre-wrap}
 .type__out::after{
   content:"";display:inline-block;width:.55em;height:1.05em;margin-left:.12em;
