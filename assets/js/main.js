@@ -282,7 +282,31 @@
       var btn = $('button[type="submit"]', form);
       var endpoint = CFG.formEndpoint || 'mailto';
 
-      /* --- sin endpoint: se arma un mail con todo cargado --- */
+      /* --- modo WhatsApp: se arma el mensaje y lo abre listo para enviar --- */
+      if (endpoint === 'whatsapp') {
+        var linea = function (etiqueta, valor) {
+          return valor ? '*' + etiqueta + ':* ' + valor + '\n' : '';
+        };
+        var texto =
+          'Hola M·DATOS, les escribo desde la web.\n\n' +
+          linea('Nombre', d.get('nombre')) +
+          linea('Empresa', d.get('empresa')) +
+          linea('Email', d.get('email')) +
+          linea('Teléfono', d.get('telefono')) +
+          linea('Necesito', d.get('servicio')) +
+          (d.get('mensaje') ? '\n*Consulta:*\n' + d.get('mensaje') : '');
+
+        var destino = 'https://wa.me/' + waNum + '?text=' + encodeURIComponent(texto);
+        var ventana = window.open(destino, '_blank', 'noopener');
+        if (!ventana) location.href = destino;   /* si el navegador bloquea la ventana */
+
+        msg.className = 'form__msg ok';
+        msg.innerHTML = 'Te abrimos WhatsApp con la consulta ya escrita: revisala y dale enviar. ' +
+          'Si no se abrió, <a href="' + destino + '" target="_blank" rel="noopener">tocá acá</a>.';
+        return;
+      }
+
+      /* --- modo mailto: se arma un mail con todo cargado --- */
       if (endpoint === 'mailto') {
         var cuerpo =
           'Nombre: '   + (d.get('nombre')   || '-') + '\n' +

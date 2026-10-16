@@ -19,13 +19,18 @@ window.MD_CONFIG = {
   /* Email de contacto */
   email: 'mdatos.ventas@gmail.com',
 
-  /* Destino del formulario.
-     - 'mailto'   → abre el cliente de correo del visitante (funciona siempre, sin configurar nada)
-     - una URL    → se envía por POST (FormSubmit, Formspree, Getform, Basin…)
+  /* Destino del formulario. Tres modos:
 
-     Para recibirlos en tu casilla sin backend, la opción más simple es FormSubmit:
-       1) Poné aquí:  'https://formsubmit.co/ajax/TU-EMAIL@dominio.com'
-       2) Enviá el formulario una vez y confirmá el mail de activación.
-     Formspree:  'https://formspree.io/f/TU-ID'                          */
-  formEndpoint: 'https://formsubmit.co/ajax/mdatos.ventas@gmail.com'
+     - 'whatsapp'  → arma el mensaje con lo que cargó el visitante y abre WhatsApp
+                     para que solo tenga que darle enviar. No necesita configurar
+                     nada ni depender de ningún servicio. (modo actual)
+
+     - 'mailto'    → abre el cliente de correo del visitante con la consulta escrita.
+
+     - una URL     → se envía por POST en segundo plano (FormSubmit, Formspree,
+                     Getform, Basin…). Para recibirlos en la casilla sin backend:
+                       1) Poné aquí: 'https://formsubmit.co/ajax/TU-EMAIL@dominio.com'
+                       2) Mandá una consulta de prueba y confirmá el mail de activación.
+                     Formspree: 'https://formspree.io/f/TU-ID'                     */
+  formEndpoint: 'whatsapp'
 };

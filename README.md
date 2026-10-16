@@ -18,7 +18,7 @@ window.MD_CONFIG = {
   telefonoVisible: '+54 9 2223 43-1190',         // cómo se muestra en pantalla
   whatsappMsg:     '¡Hola M·DATOS! ...',         // mensaje que aparece ya escrito
   email:           'mdatos.ventas@gmail.com',
-  formEndpoint:    'https://formsubmit.co/ajax/mdatos.ventas@gmail.com'
+  formEndpoint:    'whatsapp'                    // ver punto 3
 };
 ```
 
@@ -45,23 +45,29 @@ Con dominio propio (`mdatos.com.ar`):
 
 El archivo `.nojekyll` ya está: evita que GitHub procese el sitio con Jekyll.
 
-## 3. Activar el formulario — ⚠️ un paso obligatorio
+## 3. Cómo llega lo que cargan en el formulario
 
-El formulario ya está apuntado a **mdatos.ventas@gmail.com** vía FormSubmit, pero
-**FormSubmit no manda nada hasta que confirmes la casilla una vez**:
+Hoy `formEndpoint` está en `'whatsapp'`: el formulario toma lo que escribió el
+visitante, **arma el mensaje y le abre WhatsApp con todo listo para enviar**. No
+hay servidor, ni servicio de terceros, ni casilla que activar: funciona desde el
+momento en que publicás, y la consulta te entra por el mismo lugar donde ya
+atendés.
 
-1. Publicá el sitio.
-2. Entrá y mandá una consulta de prueba desde el formulario.
-3. Te llega un mail de FormSubmit a mdatos.ventas@gmail.com: **hacé clic en el
-   enlace de activación**.
-4. Mandá otra prueba y fijate que te llegue. Recién ahí quedó andando.
+La contra es que el visitante tiene que dar un paso más (tocar enviar en
+WhatsApp), así que algunos se caen en el camino. Si en algún momento querés que
+las consultas entren solas al mail, cambiá esa línea de `config.js`:
 
-Hasta que hagas ese paso, al visitante le dice "¡Listo!" pero la consulta no llega.
-Mientras tanto el botón de WhatsApp funciona desde el minuto cero.
+```js
+formEndpoint: 'https://formsubmit.co/ajax/mdatos.ventas@gmail.com'
+```
 
-Si preferís no depender de un tercero, poné `formEndpoint: 'mailto'` en `config.js`:
-el formulario abre el cliente de correo del visitante con la consulta ya escrita.
-Alternativa a FormSubmit: **Formspree** → `'https://formspree.io/f/TU-ID'`.
+y después mandá una consulta de prueba desde el sitio publicado: te llega un mail
+de FormSubmit que hay que confirmar una sola vez. **Hasta que no lo confirmes, al
+visitante le dice "¡Listo!" pero la consulta no llega a ningún lado.** También
+existe `'mailto'`, que abre el cliente de correo del visitante.
+
+Si cambiás el modo, actualizá `privacidad/index.html`: ahí está declarado por
+dónde pasan los datos, y hoy dice que no pasan por ningún tercero.
 
 ## 4. Cambiar textos, casos y logos
 

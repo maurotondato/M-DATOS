@@ -75,6 +75,6 @@ dentro del mismo día hábil.
 
 ## Proyectos en producción
 
-- [bernardoquaranta.com.ar](https://www.bernardoquaranta.com.ar) — sitio y SEO local para un kinesiólogo osteópata con consultorios en Recoleta y Pilar.
-- [viajealalma.com.ar](https://www.viajealalma.com.ar) — landing de venta de un viaje grupal a India y Maldivas, con itinerario día por día y reserva.
-- [tondatotraslados.com.ar](https://www.tondatotraslados.com.ar) — sitio, dashboard, automatización de reservas y asistente para una empresa de traslados de larga distancia.
+- [bernardoquaranta.com.ar](https://www.bernardoquaranta.com.ar) — sitio, gestión de redes y SEO local para un kinesiólogo osteópata con consultorios en Recoleta y Pilar.
+- [viajealalma.com.ar](https://www.viajealalma.com.ar) — landing de venta de un viaje grupal a India y Maldivas, con itinerario día por día y reserva, más la gestión de redes.
+- [tondatotraslados.com.ar](https://www.tondatotraslados.com.ar) — sitio, dashboard, automatización de reservas y chatbot de WhatsApp para una empresa de traslados de larga distancia.
