@@ -17,7 +17,7 @@ window.MD_CONFIG = {
   whatsappMsg: '¡Hola M·DATOS! Vengo de la web y quiero pedir el diagnóstico gratis.',
 
   /* Email de contacto */
-  email: 'mdatos.ventas@gmail.com',
+  email: 'info@mdatos.com.ar',
 
   /* Destino del formulario. Tres modos:
 

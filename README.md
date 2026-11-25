@@ -17,7 +17,7 @@ window.MD_CONFIG = {
   whatsapp:        '5492223431190',              // sin +, sin espacios, sin guiones
   telefonoVisible: '+54 9 2223 43-1190',         // cómo se muestra en pantalla
   whatsappMsg:     '¡Hola M·DATOS! ...',         // mensaje que aparece ya escrito
-  email:           'mdatos.ventas@gmail.com',
+  email:           'info@mdatos.com.ar',
   formEndpoint:    'whatsapp'                    // ver punto 3
 };
 ```
@@ -58,7 +58,7 @@ WhatsApp), así que algunos se caen en el camino. Si en algún momento querés q
 las consultas entren solas al mail, cambiá esa línea de `config.js`:
 
 ```js
-formEndpoint: 'https://formsubmit.co/ajax/mdatos.ventas@gmail.com'
+formEndpoint: 'https://formsubmit.co/ajax/info@mdatos.com.ar'
 ```
 
 y después mandá una consulta de prueba desde el sitio publicado: te llega un mail
