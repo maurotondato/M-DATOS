@@ -145,7 +145,7 @@ main,.hdr,.ftr,.wa-float{position:relative;z-index:3}
 .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-5.3px) rotate(-45deg)}
 
 /* ---------- Hero ---------- */
-.hero{scroll-margin-top:90px;min-height:100svh;display:grid;align-items:center;padding:94px 0 60px;position:relative}
+.hero{scroll-margin-top:90px;min-height:100svh;display:grid;align-items:center;padding:90px 0 54px;position:relative}
 .hero__in{max-width:920px}
 .eyebrow{
   display:inline-flex;align-items:center;gap:.7em;font-family:var(--f-mono);font-size:.78rem;
@@ -182,7 +182,7 @@ main,.hdr,.ftr,.wa-float{position:relative;z-index:3}
   color:var(--ink-2);letter-spacing:.01em;
 }
 
-.proof{margin-top:1.7em;display:flex;align-items:baseline;flex-wrap:wrap;gap:10px 16px}
+.proof{margin-top:1.35em;display:flex;align-items:baseline;flex-wrap:wrap;gap:10px 16px}
 .proof__label{
   font-family:var(--f-mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
   color:var(--muted);flex:none;
@@ -690,6 +690,18 @@ body.doc-page{
 
 /* lista de datos de contacto reutilizable */
 .doc .contact__list{margin:1.6em 0 0}
+
+/* En pantallas bajas la tira de seis nombres envuelve y se cae del fold.
+   La restriccion real es el alto, no el ancho. */
+@media (max-height:800px){
+  .hero{padding:72px 0 44px}
+  .hero__sub{margin-top:.85em}
+  .hero__cta{margin-top:1.5em}
+  .hero__terms{margin-top:.9em}
+  .proof{margin-top:1em;gap:8px 14px}
+  .proof__list{gap:0 18px}
+  .proof__list a{font-size:.88rem;min-height:38px}
+}
 
 /* ---------- Responsive ---------- */
 @media (max-width:980px){
