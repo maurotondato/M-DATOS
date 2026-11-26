@@ -75,6 +75,8 @@ dentro del mismo día hábil.
 
 ## Proyectos en producción
 
+- [mednexo.com.ar](https://www.mednexo.com.ar) — sistema integral de gestión para profesionales de la salud: turnero online con página de reservas por profesional, asistente de WhatsApp, cobros con Mercado Pago, facturación electrónica de ARCA y dashboard financiero. Producto propio, diseñado y construido de cero.
+- [tondatotraslados.com.ar](https://www.tondatotraslados.com.ar) — sitio, dashboard, automatización de reservas y chatbot de WhatsApp para una empresa de traslados de larga distancia.
 - [bernardoquaranta.com.ar](https://www.bernardoquaranta.com.ar) — sitio, gestión de redes y SEO local para un kinesiólogo osteópata con consultorios en Recoleta y Pilar.
 - [viajealalma.com.ar](https://www.viajealalma.com.ar) — landing de venta de un viaje grupal a India y Maldivas, con itinerario día por día y reserva, más la gestión de redes.
-- [tondatotraslados.com.ar](https://www.tondatotraslados.com.ar) — sitio, dashboard, automatización de reservas y chatbot de WhatsApp para una empresa de traslados de larga distancia.
+- [inakietchegaray.com.ar](https://www.inakietchegaray.com.ar) — sitio y marca personal para un coach deportivo y ontológico: programas, testimonios y contacto por WhatsApp.

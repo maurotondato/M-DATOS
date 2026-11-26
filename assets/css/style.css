@@ -317,6 +317,12 @@ main,.hdr,.ftr,.wa-float{position:relative;z-index:3}
 .case__link:hover{color:var(--cyan)}
 .case__link:hover svg{transform:translate(2px,-2px)}
 
+/* con 5 casos la última fila queda incompleta: columnas fijas para que
+   esas tarjetas conserven el ancho de las de arriba en vez de estirarse */
+@media (min-width:1000px){
+  #casos .grid--3{grid-template-columns:repeat(3,1fr)}
+}
+
 /* ---------- Nosotros ---------- */
 .about{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(36px,6vw,80px);align-items:center}
 .about h2{font-size:clamp(2rem,4.2vw,3.2rem);font-weight:700}
