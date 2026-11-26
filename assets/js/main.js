@@ -68,7 +68,14 @@
   /* ---------------------------------------------------
      4. Reveal al entrar en pantalla
      --------------------------------------------------- */
-  var targets = $$('.reveal, .step');
+  /* El hero esta sobre la linea de flotacion: si su revelado dependiera del
+     observador, un elemento que cae justo en el borde del rootMargin nunca
+     apareceria. Se revela de entrada y el observador se ocupa del resto. */
+  $$('#hero .reveal').forEach(function (el, i) {
+    setTimeout(function () { el.classList.add('is-in'); }, 60 + i * 90);
+  });
+
+  var targets = $$('.reveal:not(#hero .reveal), .step');
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
@@ -106,33 +113,6 @@
         c.style.setProperty('--my', (e.clientY - r.top) + 'px');
       });
     });
-  }
-
-  /* ---------------------------------------------------
-     7. Contadores de la sección Nosotros
-     --------------------------------------------------- */
-  var counters = $$('[data-count]');
-  function runCounter(el) {
-    var end = parseFloat(el.dataset.count) || 0;
-    var sfx = el.dataset.suffix || '+';
-    if (reduced) { el.textContent = end + sfx; return; }
-    var dur = 1400, t0 = performance.now();
-    (function step(now) {
-      var k = Math.min(1, (now - t0) / dur);
-      var e = 1 - Math.pow(1 - k, 3);
-      el.textContent = Math.round(end * e) + (k === 1 ? sfx : '');
-      if (k < 1) requestAnimationFrame(step);
-    })(t0);
-  }
-  if ('IntersectionObserver' in window) {
-    var cio = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) { runCounter(en.target); cio.unobserve(en.target); }
-      });
-    }, { threshold: 0.5 });
-    counters.forEach(function (el) { cio.observe(el); });
-  } else {
-    counters.forEach(runCounter);
   }
 
   /* ---------------------------------------------------
@@ -191,20 +171,6 @@
     cards.forEach(function (c) { c.classList.add('is-live'); });
   }
 
-  /* contador de likes de la tarjeta de redes */
-  var likeEl = $('[data-likes]');
-  if (likeEl && !reduced) {
-    var likes = parseInt(likeEl.textContent.replace(/\D/g, ''), 10) || 1248;
-    var likeCard = likeEl.closest('.card');
-    setInterval(function () {
-      if (document.hidden || !likeCard.classList.contains('is-live')) return;
-      likes += 1 + Math.floor(Math.random() * 4);
-      likeEl.textContent = likes.toLocaleString('es-AR');
-      likeEl.classList.add('bump');
-      setTimeout(function () { likeEl.classList.remove('bump'); }, 320);
-    }, 1500);
-  }
-
   /* ---------------------------------------------------
      12. Avance por scroll: barras del proceso y checkpoints
          Cada lista se completa en orden a medida que se baja.
@@ -253,7 +219,38 @@
   }
 
   /* ---------------------------------------------------
-     13. Formulario
+     13. Barra fija de acción en celular
+         El globo flotante no tiene etiqueta y el botón del header
+         vive dentro del menú colapsado: sin esto, en celular no hay
+         ninguna acción visible entre el hero y el formulario.
+     --------------------------------------------------- */
+  var mbar = $('#mbar');
+  var hero = $('#hero');
+  if (mbar && hero && 'IntersectionObserver' in window) {
+    mbar.removeAttribute('hidden');
+    document.body.classList.add('has-mbar');
+    var contacto = $('#contacto');
+    var fuera = { hero: false, contacto: false };
+    var pintar = function () {
+      mbar.classList.toggle('is-up', fuera.hero && !fuera.contacto);
+    };
+    new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (en.target === hero) fuera.hero = !en.isIntersecting;
+        if (en.target === contacto) fuera.contacto = en.isIntersecting;
+      });
+      pintar();
+    }, { threshold: 0.01 }).observe(hero);
+    if (contacto) {
+      new IntersectionObserver(function (es) {
+        es.forEach(function (en) { fuera.contacto = en.isIntersecting; });
+        pintar();
+      }, { threshold: 0.12 }).observe(contacto);
+    }
+  }
+
+  /* ---------------------------------------------------
+     14. Formulario
      --------------------------------------------------- */
   var form = $('#form'), msg = $('#formMsg');
   if (form) {
@@ -290,9 +287,7 @@
         var texto =
           'Hola M·DATOS, les escribo desde la web.\n\n' +
           linea('Nombre', d.get('nombre')) +
-          linea('Empresa', d.get('empresa')) +
-          linea('Email', d.get('email')) +
-          linea('Teléfono', d.get('telefono')) +
+          linea('WhatsApp', d.get('telefono')) +
           linea('Necesito', d.get('servicio')) +
           (d.get('mensaje') ? '\n*Consulta:*\n' + d.get('mensaje') : '');
 
